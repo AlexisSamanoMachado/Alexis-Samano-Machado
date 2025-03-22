@@ -34,7 +34,10 @@ public class Trabajo2{
         int op = 0;
         do{
 
-            double[][] matriz = new double[orden-1][orden];
+            double[][] MatrizA = new double[orden][orden+1];
+            double Piv=0;
+            double Ecero=0;
+            double factor=0;
 
             //Menu de selección
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");            
@@ -53,18 +56,46 @@ public class Trabajo2{
                 case 1:       
 
                 //Captura de valores de la matriz con respecto al orden
-                for(int i=0;i<orden;i++)
+                for(int f=1;f<orden;f++)
                 {
-                   for(int j=0;j<orden;j++)
+                   for(int c=1;c<orden+1;c++)
                    {
-                    System.out.println("Ingresa el valor de x"+(j+1)+" para X"+(i+1)+": ");
-                    matriz[i][j] = scanner.nextDouble();
+                    System.out.println("Ingresa el valor de x"+(c)+" para X"+(f)+": ");
+                    MatrizA[f][c] = scanner.nextDouble();
                    }
-                   System.out.println("Ingresa el valor del resultado de X"+(i+1)+":");
-                   matriz[i][4] = scanner.nextDouble();
+                   System.out.println("Ingresa el valor del resultado de X"+(f)+":");
+
                 }
 
-                
+                //Proceso para hacer ceros abajo de la diagonal principal
+                for (int k=1;k<=orden-1;k++){
+                    Piv= MatrizA[k][k];
+                    for(int f=k+1;f<=orden;f++){
+                        Ecero=MatrizA[f][k];
+                        for(int c=k;c<=orden+1;c++){
+                            MatrizA[f][c]=(Piv*MatrizA[f][c])-(Ecero*MatrizA[f][c]);
+                        }
+                    }
+                }
+
+                //Proceso para hacer arriba de la diagonal principal
+                for(int k=orden;k<=2;k++){
+                    Piv=MatrizA[k][k];
+                    for(int f=1;f<=k-1;f++){
+                        factor = MatrizA[f][k]/Piv;
+                        for(int c=k;c<=orden+1;c++){
+                            MatrizA[f][c] = MatrizA[f][c] - (factor*MatrizA[k][c]);
+                        }
+                    }
+                }
+
+                //Generar matriz unitaria
+                for (int f=1;f<=orden;f++){
+                    MatrizA[f][orden+1] = MatrizA[f][orden+1]/MatrizA[f][f];
+                    MatrizA[f][f]=MatrizA[f][f]/MatrizA[f][f];
+                }
+
+                //Impresion de matriz
 
 
 
