@@ -19,23 +19,23 @@ public class Trabajo2{
         
         //Entrada de problema y orden
         System.out.print("\nPregunta del Problema: ");
-        String problema = scanner.nextLine();
+        String problema = scanner.next();
         System.out.print("\nOrden del Problema: ");
-        Int orden = scanner.nextInt();
+        int orden = scanner.nextInt();
 
         //Ciclo de entradas de conceptos y unidades en base al orden
         for (int i=1;i<=orden;i++){
             System.out.print("\nConcepto No."+i+" del Problema: ");
-            String concepto = scanner.nextLine();
+            String concepto = scanner.next();
             System.out.print("\nUnidad No."+i+" del Problema: ");
-            String unidad = scanner.nextLine();
+            String unidad = scanner.next();
         }
-
-        
-
 
         int op = 0;
         do{
+
+            double[][] matriz = new double[orden-1][orden];
+
             //Menu de selección
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");            
             System.out.println("\n\n\t\t\t\t\t\tSolución de Ecuaciones");
@@ -51,6 +51,23 @@ public class Trabajo2{
 
                 //-------Metodo de Gauss Jordan---------
                 case 1:       
+
+                //Captura de valores de la matriz con respecto al orden
+                for(int i=0;i<orden;i++)
+                {
+                   for(int j=0;j<orden;j++)
+                   {
+                    System.out.println("Ingresa el valor de x"+(j+1)+" para X"+(i+1)+": ");
+                    matriz[i][j] = scanner.nextDouble();
+                   }
+                   System.out.println("Ingresa el valor del resultado de X"+(i+1)+":");
+                   matriz[i][4] = scanner.nextDouble();
+                }
+
+                
+
+
+
                 break;
 
                 //-------Metodo de Gauss Seiden-------
