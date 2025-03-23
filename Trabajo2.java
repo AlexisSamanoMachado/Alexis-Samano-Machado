@@ -34,7 +34,7 @@ public class Trabajo2{
         int op = 0;
         do{
 
-            double[][] MatrizA = new double[orden][orden+1];
+            double[][] MatrizA = new double[orden+1][orden+2];
             double Piv=0;
             double Ecero=0;
             double factor=0;
@@ -56,15 +56,19 @@ public class Trabajo2{
                 case 1:       
 
                 //Captura de valores de la matriz con respecto al orden
-                for(int f=1;f<orden;f++)
+                for(int f=1;f<=orden;f++)
                 {
-                   for(int c=1;c<orden+1;c++)
+                   for(int c=1;c<=orden+1;c++)
                    {
-                    System.out.println("Ingresa el valor de x"+(c)+" para X"+(f)+": ");
-                    MatrizA[f][c] = scanner.nextDouble();
+                    if (c<5){
+                        System.out.println("Ingresa el valor de x"+(c)+" para X"+(f)+": ");
+                        MatrizA[f][c] = scanner.nextDouble();
+                    } else {
+                        System.out.println("Ingresar el resultado para X"+f+":");
+                        MatrizA[f][c] = scanner.nextDouble();
+                    }
+                    
                    }
-                   System.out.println("Ingresa el valor del resultado de X"+(f)+":");
-
                 }
 
                 //Proceso para hacer ceros abajo de la diagonal principal
@@ -94,10 +98,17 @@ public class Trabajo2{
                     MatrizA[f][orden+1] = MatrizA[f][orden+1]/MatrizA[f][f];
                     MatrizA[f][f]=MatrizA[f][f]/MatrizA[f][f];
                 }
+                System.out.println("Matriz identidad: ");
 
                 //Impresion de matriz
-
-
+                System.out.println("--------------------------------------------------------------------------------------------------");
+                for (int i = 1; i <= orden; i++) {
+                    for (int j = 1; j <= orden+1; j++) {
+                        System.out.printf("%-16.1f", MatrizA[i][j]);
+                    }
+                    System.out.println();
+                }
+                System.out.println("--------------------------------------------------------------------------------------------------\n");
 
                 break;
 
