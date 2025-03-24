@@ -21,8 +21,14 @@ public class Trabajo2{
         // Entrada de problema y orden
         System.out.print("\nPregunta del Problema: ");
         String problema = scanner.nextLine();
-        System.out.println("Orden del Problema: ");
-        int orden = scanner.nextInt();
+        int orden=0;
+        do {
+            System.out.println("Orden del Problema (2 a 10): ");
+            orden = scanner.nextInt();
+            if (orden<2 || orden>10)
+            System.out.println("Margen de orden fuera de rango, favor de volver a escribir");
+        } while (orden<2 || orden>10);
+        
         scanner.nextLine(); // Consumir el salto de línea pendiente
 
         // Creación de matrices para conceptos y unidades
