@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Trabajo2{
 
     public static void main (String[] args){
+        
 
         Scanner scanner = new Scanner (System.in);
 
@@ -23,18 +24,22 @@ public class Trabajo2{
         System.out.print("\nOrden del Problema: ");
         int orden = scanner.nextInt();
 
+        //Creacion de matrices para conceptos y unidades
+        String Concepto[]= new String[orden];
+        String Unidad[] = new String[orden];
+
         //Ciclo de entradas de conceptos y unidades en base al orden
-        for (int i=1;i<=orden;i++){
-            System.out.print("\nConcepto No."+i+" del Problema: ");
-            String concepto = scanner.next();
-            System.out.print("\nUnidad No."+i+" del Problema: ");
-            String unidad = scanner.next();
+        for (int i=0;i<orden;i++){
+            System.out.print("\nConcepto No."+(i+1)+" del Problema: ");
+            Concepto[i] = scanner.next();
+            System.out.print("\nUnidad No."+(i+1)+" del Problema: ");
+            Unidad[i] = scanner.next();
         }
 
         int op = 0;
         do{
 
-            double[][] MatrizA = new double[orden+1][orden+2];
+            double[][] MatrizA = new double[orden][orden+1];
             double Piv=0;
             double Ecero=0;
             double factor=0;
@@ -54,70 +59,110 @@ public class Trabajo2{
 
                 //-------Metodo de Gauss Jordan---------
                 case 1:       
-
-                //Captura de valores de la matriz con respecto al orden
-                for(int f=1;f<=orden;f++)
-                {
-                   for(int c=1;c<=orden+1;c++)
-                   {
-                    if (c<5){
-                        System.out.println("Ingresa el valor de x"+(c)+" para X"+(f)+": ");
-                        MatrizA[f][c] = scanner.nextDouble();
-                    } else {
-                        System.out.println("Ingresar el resultado para X"+f+":");
-                        MatrizA[f][c] = scanner.nextDouble();
-                    }
-                    
-                   }
-                }
-
-                //Proceso para hacer ceros abajo de la diagonal principal
-                for (int k=1;k<=orden-1;k++){
-                    Piv= MatrizA[k][k];
-                    for(int f=k+1;f<=orden;f++){
-                        Ecero=MatrizA[f][k];
-                        for(int c=k;c<=orden+1;c++){
-                            MatrizA[f][c]=(Piv*MatrizA[f][c])-(Ecero*MatrizA[f][c]);
+                //Captura de datos de la matriz 
+                for (int f=0; f<orden; f++){
+                    for (int c = 0; c < orden+1; c++) {
+                        if(c<orden){
+                            System.out.print(" Ingresa el valor de x"+(c+1)+" en X"+(f+1)+":");
+                            MatrizA[f][c] = scanner.nextDouble();
+                        } else if (c==orden){
+                            System.out.print(" Ingresa el resultado en X"+(f+1)+":");
+                            MatrizA[f][c] = scanner.nextDouble();
                         }
+                        
                     }
                 }
 
-                //Proceso para hacer arriba de la diagonal principal
-                for(int k=orden;k<=2;k++){
-                    Piv=MatrizA[k][k];
-                    for(int f=1;f<=k-1;f++){
-                        factor = MatrizA[f][k]/Piv;
-                        for(int c=k;c<=orden+1;c++){
-                            MatrizA[f][c] = MatrizA[f][c] - (factor*MatrizA[k][c]);
-                        }
-                    }
-                }
-
-                //Generar matriz unitaria
-                for (int f=1;f<=orden;f++){
-                    MatrizA[f][orden+1] = MatrizA[f][orden+1]/MatrizA[f][f];
-                    MatrizA[f][f]=MatrizA[f][f]/MatrizA[f][f];
-                }
-                System.out.println("Matriz identidad: ");
-
-                //Impresion de matriz
-                System.out.println("--------------------------------------------------------------------------------------------------");
-                for (int i = 1; i <= orden; i++) {
-                    for (int j = 1; j <= orden+1; j++) {
+                //Primera impresion (Matriz de datos)
+                System.out.println("Matriz de datos");
+                System.out.println("\n--------------------------------------------------------------------------------------------------");
+                for (int i = 0; i < orden; i++) {
+                    for (int j = 0; j < orden+1; j++) {
                         System.out.printf("%-16.1f", MatrizA[i][j]);
                     }
-                    System.out.println();
+                System.out.println();
                 }
                 System.out.println("--------------------------------------------------------------------------------------------------\n");
 
+                // Proceso de hacer ceros abajo de la diagonal principal
+                for (int k = 0; k < orden-1; k++) {         
+                    Piv = MatrizA[k][k];
+                    for (int f = k+1; f < orden; f++) {
+                        Ecero = MatrizA[f][k];
+                        for (int c = k; c < orden+1; c++) {
+                            MatrizA[f][c] = (Piv*MatrizA[f][c]) - (Ecero*MatrizA[k][c]);
+                        }
+                    }
+                }
+                //Segunda impresion (Matriz ceros abajo de la diagonal)
+                System.out.println("Matriz ceros abajo de la diagonal");
+                System.out.println("\n--------------------------------------------------------------------------------------------------");
+                for (int i = 0; i < orden; i++) {
+                    for (int j = 0; j < orden+1; j++) {
+                        System.out.printf("%-16.1f", MatrizA[i][j]);
+                    }
+                System.out.println();
+                }
+                System.out.println("--------------------------------------------------------------------------------------------------\n");
+
+
+                // Proceso de hacer ceros arriba de la diagonal principal
+                for (int k = orden-1; k > 0; k--) {         
+                    Piv = MatrizA[k][k];
+                    for (int f = 0; f < k; f++) {
+                        factor = MatrizA[f][k] / Piv;
+                        for (int c = k; c < orden+1; c++) {
+                            MatrizA[f][c] = MatrizA[f][c] - (factor*MatrizA[k][c]);
+                        }
+                        MatrizA[f][k] = 0;
+                    }
+                }   
+
+                //Tercera impresion (matriz ceros abajo y arriba de la diagonal)
+                System.out.println("Matriz ceros abajo y arriba de la diagonal");
+                System.out.println("\n--------------------------------------------------------------------------------------------------");
+                for (int i = 0; i < orden; i++) {
+                    for (int j = 0; j < orden+1; j++) {
+                        System.out.printf("%-16.1f", MatrizA[i][j]);
+                    }
+                System.out.println();
+                }
+                System.out.println("--------------------------------------------------------------------------------------------------\n");
+                
+                // Generar matriz unitaria
+                for (int f = 0; f < orden; f++) {           
+                    MatrizA[f][orden] = MatrizA[f][orden] / MatrizA[f][f];
+                    MatrizA[f][f] = MatrizA[f][f] / MatrizA[f][f];
+                }
+                System.out.println("Matriz Identidad:");
+                
+                //Ultima impresion (Matriz identidad)
+                System.out.println("Matriz identidad");
+                System.out.println("--------------------------------------------------------------------------------------------------");
+                for (int i = 0; i < orden; i++) {
+                    for (int j = 0; j < orden+1; j++) {
+                        System.out.printf("%-16.1f", MatrizA[i][j]);
+                    }
+                System.out.println();
+                }
+                System.out.println("--------------------------------------------------------------------------------------------------\n");
+
+                System.out.println("Resultados:");
+                for (int i = 0; i < orden; i++) {
+                    System.out.println(Concepto[i]+" = "+MatrizA[i][orden]+" "+Unidad[i]);
+                }
+
                 break;
+            
 
                 //-------Metodo de Gauss Seiden-------
                 case 2: 
                 break;
             }
 
+            
+
         }while(op != 10 );
 
-    }
-}
+    
+}}
