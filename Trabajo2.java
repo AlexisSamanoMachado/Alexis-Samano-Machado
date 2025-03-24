@@ -20,7 +20,7 @@ public class Trabajo2{
         
         //Entrada de problema y orden
         System.out.print("\nPregunta del Problema: ");
-        String problema = scanner.next();
+        String problema = scanner.nextLine();
         System.out.print("\nOrden del Problema: ");
         int orden = scanner.nextInt();
 
@@ -31,7 +31,7 @@ public class Trabajo2{
         //Ciclo de entradas de conceptos y unidades en base al orden
         for (int i=0;i<orden;i++){
             System.out.print("\nConcepto No."+(i+1)+" del Problema: ");
-            Concepto[i] = scanner.next();
+            Concepto[i] = scanner.nextLine();
             System.out.print("\nUnidad No."+(i+1)+" del Problema: ");
             Unidad[i] = scanner.next();
         }
@@ -72,10 +72,18 @@ public class Trabajo2{
                         
                     }
                 }
+                //Encabezado de la impresion
+                System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+                System.out.println("\n\n\t\t\t\t\t\tInstituto Tecnológico de Culiacán");
+                System.out.println("\t\t\t\t\t\tIng. En Sistemas computacionales");
+                System.out.println("\nSamano Machado Alexis.");
+                System.out.println("Solucion de Sistemas de Ecuaciones.");
+                System.out.println("De 9:00 a 10:00 horas.");
+                System.out.println("\nPregunta: "+problema);
 
                 //Primera impresion (Matriz de datos)
-                System.out.println("Matriz de datos");
-                System.out.println("\n--------------------------------------------------------------------------------------------------");
+                System.out.println("\nMatriz de datos");
+                System.out.println("--------------------------------------------------------------------------------------------------");
                 for (int i = 0; i < orden; i++) {
                     for (int j = 0; j < orden+1; j++) {
                         System.out.printf("%-16.1f", MatrizA[i][j]);
@@ -96,7 +104,7 @@ public class Trabajo2{
                 }
                 //Segunda impresion (Matriz ceros abajo de la diagonal)
                 System.out.println("Matriz ceros abajo de la diagonal");
-                System.out.println("\n--------------------------------------------------------------------------------------------------");
+                System.out.println("--------------------------------------------------------------------------------------------------");
                 for (int i = 0; i < orden; i++) {
                     for (int j = 0; j < orden+1; j++) {
                         System.out.printf("%-16.1f", MatrizA[i][j]);
@@ -120,7 +128,7 @@ public class Trabajo2{
 
                 //Tercera impresion (matriz ceros abajo y arriba de la diagonal)
                 System.out.println("Matriz ceros abajo y arriba de la diagonal");
-                System.out.println("\n--------------------------------------------------------------------------------------------------");
+                System.out.println("--------------------------------------------------------------------------------------------------");
                 for (int i = 0; i < orden; i++) {
                     for (int j = 0; j < orden+1; j++) {
                         System.out.printf("%-16.1f", MatrizA[i][j]);
@@ -134,10 +142,9 @@ public class Trabajo2{
                     MatrizA[f][orden] = MatrizA[f][orden] / MatrizA[f][f];
                     MatrizA[f][f] = MatrizA[f][f] / MatrizA[f][f];
                 }
-                System.out.println("Matriz Identidad:");
                 
                 //Ultima impresion (Matriz identidad)
-                System.out.println("Matriz identidad");
+                System.out.println("Matriz Identidad:");
                 System.out.println("--------------------------------------------------------------------------------------------------");
                 for (int i = 0; i < orden; i++) {
                     for (int j = 0; j < orden+1; j++) {
@@ -147,7 +154,7 @@ public class Trabajo2{
                 }
                 System.out.println("--------------------------------------------------------------------------------------------------\n");
 
-                System.out.println("Resultados:");
+                System.out.println("Resultados:\n");
                 for (int i = 0; i < orden; i++) {
                     System.out.println(Concepto[i]+" = "+MatrizA[i][orden]+" "+Unidad[i]);
                 }
