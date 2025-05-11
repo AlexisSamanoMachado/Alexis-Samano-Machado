@@ -17,7 +17,7 @@ public class Trabajofinal {
 
         //Captura de problema, Vreal, a, b, Unidad
         System.out.println("Pregunta del problema: ");
-        String pregunta = scanner.nextLine();
+        String problema = scanner.nextLine();
         System.out.println("Valor real del problema: ");
         double Vreal = scanner.nextDouble();
         System.out.println("Valor de a: ");
@@ -27,6 +27,7 @@ public class Trabajofinal {
         System.out.println("Unidad del problema: ");
         String unidad = scanner.nextLine();
 
+        int op;
         do{
             //Menu de selección
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");            
@@ -44,7 +45,7 @@ public class Trabajofinal {
 
                 case 1: 
                     double n = 2;
-                    System.out.println("Simpson de 1/3 formula simple")
+                    System.out.println("Simpson de 1/3 formula simple");
                     // Encabezado
                     System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
                     System.out.println("\n\n\t\t\t\t\t\tInstituto Tecnológico de Culiacán");
@@ -59,12 +60,12 @@ public class Trabajofinal {
 
                     //Calculos y logica
                     double h = (b-a)/n;
-                    fa = 0.03(a*a) + 1.5;
-                    x1 = a+h;
-                    fx1 = 0.03(x1*x1) + 1.5;
-                    fb = 0.03(b*b) + 1.5;
-                    Vcalc = ((1*h)/3)*(fa+(4*fx1)+fb);
-                    Error = abs(Vreal-Vcalc);
+                    double fa = 0.03*(a*a) + 1.5;
+                    double x1 = a+h;
+                    double fx1 = 0.03*(x1*x1) + 1.5;
+                    double fb = 0.03*(b*b) + 1.5;
+                    double Vcalc = ((1*h)/3)*(fa+(4*fx1)+fb);
+                    double Error = Math.abs(Vreal-Vcalc);
 
                     //impresion de datos
                     System.out.printf("|%-10d |%-10.5f |%-10.5f |%-10.5f |%-10.5f |\n", 1, a, fa, 1, 1*fa);
