@@ -29,8 +29,8 @@ public class Trabajofinal {
         String unidad = scanner.nextLine();
 
         //Inicializacion de variables a utilizar en el programa
-        double h, fa, x1, x2, fx1, fx2, fb, Vcalc, Error,  pto, fpto, valor;
-        int n, factor, Pos, Res;
+        double h, fa, x1, x2, fx1, fx2, fb, Vcalc, Error,  pto, fpto, valor, Pos, Res;
+        int n, factor;
         do{
             //Menu de selección
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");            
