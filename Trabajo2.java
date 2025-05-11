@@ -184,9 +184,6 @@ public class Trabajo2{
                 }
                 System.out.println("Como es un metodo de aproximaciones debe capturar el Error y cuantos calculos desea realizar:");
                 System.out.println("Ingresa el valor del error: ");
-                Error= scanner.nextInt();
-                System.out.println("Ingresa la cantidad de calculos maxima: ");
-                TC= scanner.nextInt();
 
                 System.out.println("Captura de los datos de la matriz: ");
                 //Captura de datos de la matriz 
