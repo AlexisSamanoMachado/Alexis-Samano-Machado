@@ -250,7 +250,9 @@ public class Trabajofinal {
                     System.out.println("No. de Divisiones = "+ n);
                     System.out.println("Valor Real de la Integral = " + Vreal + " " + unidad);
                     System.out.println("Valor por el Método = "+ Vcalc + " " + unidad);
-                    System.out.println("Error del Método = "+ Error + " " + unidad);
+                    System.out.print("Error del Método= ");
+                    System.out.printf("%.13f", Error );
+                    System.out.println(" " + unidad);
                 
             }
         }while (n != 0);
